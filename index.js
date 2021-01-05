@@ -4,8 +4,9 @@ var express = require('express')
 //import
 var app = express()
 var bodyParser = require('body-parser');
-var sqlDAO = require("./sqlDAO")
+var mySQLDAO = require("./mySQLDAO")
 const path = require('path');
+var mongoDAO = require('./mongoDAO')
 
 //Sets up view
 app.set('view engine', 'ejs')
@@ -26,7 +27,7 @@ app.get('/', (req, res) => {//call back function
 
 //displays sql Data for sqlDAO.js
 app.get("/countries", (req, res) => {
-    sqlDAO.getCountries()
+    mySQLDAO.getCountrys()
         .then((result) => {
             res.render("countries", { countries: result })
         })
@@ -37,9 +38,9 @@ app.get("/countries", (req, res) => {
 
 //gets citys route and calls sql queary from DAO
 app.get("/citys", (req, res) => {
-    sqlDAO.getCities()
+    mySQLDAO.getCitys()
         .then((result) => {
-            res.render("citys", { citys: result })
+            res.render("citys", { listCities: result })
         })
         .catch((error) => {
             res.send(error)
@@ -49,13 +50,12 @@ app.get("/citys", (req, res) => {
 app.get("/headsOfState", (req, res) => {
     mongoDAO.getHeadsOfState()
         .then((documents) => {
-            res.render('headsOfState', { getHeadsOfState: documents })
+            res.render('headsOfState', { StateHeads: documents })
         })
         .catch((error) => {
             res.send(error)
         })
 })
-
 
 
 app.listen(3000, () => {

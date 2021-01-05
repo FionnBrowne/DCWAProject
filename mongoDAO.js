@@ -19,7 +19,7 @@ MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
     })
 
-var getStateHeads = function () {
+var getHeadsOfState = function () {
     return new Promise((resolve, reject) => {
         var cursor = headsOfState.find()
         cursor.toArray()
@@ -44,4 +44,4 @@ var addHeadOfState = function (_id, headOfState) {
             })
     })
 }
-module.exports = { getHeadOfState, addHeadOfState }
+module.exports = { getHeadsOfState, addHeadOfState }

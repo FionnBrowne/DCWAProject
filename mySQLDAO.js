@@ -36,7 +36,7 @@ var getCountrys = function () {
     //Return new promise
     return new Promise((resolve, reject) => {
         //function promise
-        pool.query("select * from countries")
+        pool.query("select * from country")
             .then((result) => {
                 resolve(result)
             })
@@ -45,39 +45,4 @@ var getCountrys = function () {
             })
     })
 }
-
 module.exports = { getCountrys,getCitys }
-mongoDao
-module.exports = {getHeadsOfState}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* var getCountries = function () {
-    pool.query('select * from city')
-        .then((result) => {
-            console.log("OK")
-            res.send(result)
-        })
-        .catch((error) => {
-            console.log("NOK")
-            res.send(error)
-        })
-    console.log("HERE1")
-} */
